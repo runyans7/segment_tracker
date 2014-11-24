@@ -48,11 +48,9 @@ function initialize(location) {
     .done(function(result){
       clearSearchArea();
       $.each(result.segments, function(index, item){
+
         // Adds segments to list
-        $("#name").append('<p>' + item.name + '</p>');
-        $("#category").append('<p>Category ' + item.climb_category + '</p>');
-        $("#distance").append('<p>' + item.distance + ' meters</p>');
-        $("#elevation").append('<p>' + item.avg_grade + ' %</p>');
+        addSegmentToList(item);
 
         // Puts a marker on map for each segment
         var markerLatLng = new google.maps.LatLng(item.start_latlng[0],item.start_latlng[1]);
@@ -99,13 +97,9 @@ function clearSearchArea() {
   $("#elevation").empty();
 }
 
-
-
-
-
-
-
-
-
-
-    
+function addSegmentToList(segment) {
+  $("#name").append('<p>' + segment.name + '</p>');
+  $("#category").append('<p>Category ' + segment.climb_category + '</p>');
+  $("#distance").append('<p>' + segment.distance + ' meters</p>');
+  $("#elevation").append('<p>' + segment.avg_grade + ' %</p>');
+}    
