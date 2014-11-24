@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+
+  <!-- Basic Page Needs
+  ================================================== -->
+  <meta charset="utf-8">
+  <title>Segment Tracker</title>
+  <meta name="description" content="">
+  <meta name="author" content="">
+
+  <!-- Mobile Specific Metas
+  ================================================== -->
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+  <!-- Google font
+  ================================================== -->
+  <link href='http://fonts.googleapis.com/css?family=Nobile:400,700' rel='stylesheet' type='text/css'>
+
+  <!-- CSS
+  ================================================== -->
+  <link rel="stylesheet" href="assets/style/base.css">
+  <link rel="stylesheet" href="assets/style/skeleton.css">
+  <link rel="stylesheet" href="assets/style/layout.css">
+
+  <!--[if lt IE 9]>
+    <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+  <![endif]-->
+
+  <!-- Scripts
+  ================================================== -->
+  <script type="text/javascript"
+      src="https://maps.googleapis.com/maps/api/js?sensor=false">
+   </script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+   <script type="text/javascript" src="assets/js/app.js"></script>
+</head>
+<body>
+
+  <header>
+    <h1>Segment Tracker <small>Provided by Strava&copy; API</small></h1>
+  </header>
+  <div id="map-canvas">
+    
+  </div>
+  <div id="labels" class="container">
+    <div class="six columns"><h4>Name</h4></div>
+    <div class="four columns"><h4>Classification</h4></div>
+    <div class="three columns"><h4>Distance</h4></div>
+    <div class="three columns"><h4>Gradient</h4></div>
+  </div>
+  <div id="results" class="container">
+    <div class="row">
+      <div id="name" class="six columns"></div>
+      <div id="category" class="four columns"></div>
+      <div id="distance" class="three columns"></div>
+      <div id="elevation" class="three columns"></div>
+    </div>
+  </div>
+</body>
+</html>
