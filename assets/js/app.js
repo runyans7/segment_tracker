@@ -4,6 +4,7 @@ $(document).ready(function() {
 });
 
 var map;
+var markers = [];
 
 // Initialize map
 function initialize(location) {
@@ -21,10 +22,8 @@ function initialize(location) {
   var marker = new google.maps.Marker({
     position: currentLocation,
     map: map,
-    title:"Hello World!"
+    title:"Your location."
   });
-
-  
 
   google.maps.event.addListener(map, 'idle', function() {
     var bounds = map.getBounds();
@@ -47,11 +46,7 @@ function initialize(location) {
       type: "GET",
     })
     .done(function(result){
-      $("#name").empty();
-      $("#category").empty();
-      $("#distance").empty();
-      $("#elevation").empty();
-
+      clearSearchArea();
       $.each(result.segments, function(index, item){
         // Adds segments to list
         $("#name").append('<p>' + item.name + '</p>');
@@ -61,15 +56,47 @@ function initialize(location) {
 
         // Puts a marker on map for each segment
         var markerLatLng = new google.maps.LatLng(item.start_latlng[0],item.start_latlng[1]);
-        var marker = new google.maps.Marker({
-          position: markerLatLng,
-          map: map,
-          title: item.name,
-          animation: google.maps.Animation.DROP,
-        });
+        addMarker(item, markerLatLng);
       });
     });
   });
+}
+
+function addMarker(item, location) {
+  var marker = new google.maps.Marker({
+    position: location,
+    map: map,
+    title: item.name,
+    animation: google.maps.Animation.DROP,
+  });
+  markers.push(marker);
+}
+
+function setAllMap(map) {
+  for (var i = 0; i < markers.length; i++) {
+    markers[i].setMap(map);
+  }
+}
+
+function clearMarkers() {
+  setAllMap(null);
+}
+
+function showMarkers() {
+  setAllMap(map);
+}
+
+function deleteMarkers() {
+  clearMarkers();
+  markers = [];
+}
+
+function clearSearchArea() {
+  deleteMarkers();
+  $("#name").empty();
+  $("#category").empty();
+  $("#distance").empty();
+  $("#elevation").empty();
 }
 
 
